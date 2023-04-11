@@ -1,0 +1,70 @@
+::before,
+::after,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+}
+body {
+  margin-left: 2em;
+  background-color: #f1f1f1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 0.2rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0.2);
+}
+.top,
+.bottom,
+.flip-card .bottom-flip,
+.flip-card .top-flip {
+  overflow: hidden;
+  background-color: white;
+  line-height: 1rem;
+  padding: 0.25em;
+  height: 0.1em;
+  color: rgb(205, 87, 87);
+}
+.top,
+.flip-card .top-flip {
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  border-bottom: 0.2px solid rgba(0, 0, 0, 0.2);
+}
+.bottom,
+.flip-card .bottom-flip {
+  display: flex;
+  align-items: flex-end;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+}
+.flip-card .top-flip {
+  position: absolute;
+  animation-name: flip;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+  transform-origin: bottom;
+}
+.flip-card .bottom-flip {
+  bottom: 0;
+  position: absolute;
+  animation: flipdown 300ms ease-in-out 300ms;
+  transform: rotateX(90deg);
+  transform-origin: top;
+  overflow: hidden;
+}
+@keyframes flip {
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+@keyframes flipdown {
+  100% {
+    transform: rotateX(0deg);
+  }
+}
