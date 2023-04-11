@@ -1,5 +1,21 @@
 const flipCard = document.querySelector(".flip-card");
 
+const targetDate = new Date().setHours(new Date().getHours() + 1);
+let remaningTimeInterval;
+setInterval(() => {
+  let currentDate = new Date();
+  remainTime = Math.ceil((targetDate - currentDate) / 1000);
+  if (remaningTimeInterval !== remainTime) {
+    flipAllCard(remaningTimeInterval);
+  }
+  remaningTimeInterval = remainTime;
+}, 200);
+function flipAllCard(time) {
+  let seconds = time % 60;
+  let minutes = Math.floor((time / 60) % 60);
+  let hours = Math.floor(time / 3600);
+  console.log(seconds, minutes, hours);
+}
 function flip() {
   const topHalf = document.querySelector(".top");
   const bottomHalf = document.querySelector(".bottom");
@@ -23,9 +39,7 @@ function flip() {
   bottomFlip.addEventListener("animationend", () => {
     bottomHalf.innerText = startPoint - 1;
     bottomFlip.remove();
-    flip();
   });
 
   flipCard.append(topFlip, bottomFlip);
 }
-flip();
